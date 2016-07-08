@@ -46,3 +46,7 @@ After some length of time (0.1 seconds is sufficient), the results are available
 3. `/tmp/battery_raw` contains the average of 5 ADC readings.
 
 The python script, report_voltages.py, gives an example of how to use this interface.
+
+
+For OpenAPS users that want to log voltage to nightscout, I use the following two files:
+https://gist.github.com/cjo20/42ce5227cc1412513448da17f5f1ab84

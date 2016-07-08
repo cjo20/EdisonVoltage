@@ -1,7 +1,10 @@
 voltage_server: main.c
 	gcc main.c -o voltage_server
 
-install: voltage_server main.c
+standalone: standalone.c
+	gcc standalone.c -o standalone
+
+install: voltage_server main.c standalone
 	cp voltage_server /usr/local/bin/voltage_server
 	cp voltage_server_startup /etc/init.d/voltage_server
 	chmod a+x /etc/init.d/voltage_server

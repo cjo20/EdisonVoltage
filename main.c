@@ -1,3 +1,7 @@
+/* Author: Chris Oattes (cjo20)
+This is incredibly hacky and requires fixing
+*/
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>

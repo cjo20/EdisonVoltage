@@ -1,3 +1,5 @@
+/* Author: Chris Oattes (cjo20)
+*/
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
