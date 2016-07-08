@@ -127,6 +127,10 @@ int main(int argc, char * argv[])
 		case 2:
 			printf("%.0f%% %.0fmV", CalculatePercentage(voltage), voltage);
 			break;
+
+		case 3:
+			printf("%.0f", CalculatePercentage(voltage));
+			break;
 	}
 
 }
