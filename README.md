@@ -26,12 +26,17 @@ sample_result[8] = 0
 In this case, the result is 980. 980 is about 96% of 1023, so the voltage is about 96% of 4.5v. This is 4.3v. In this case, the battery is connected to the charger, so this value is to be expected.
 
 
-There are two different methods of reading voltage provided. One, standalone.c, requires root access (must be run with `sudo`). standalone.c takes 1 argument when run, a number. The number dictates the output format.
+There are two different methods of reading voltage provided. One, standalone.c, requires root access (must be run with `sudo`). Build it with `make standalone`. standalone.c takes 1 argument when run, a number. The number dictates the output format.
 * `./standalone 0` or `./standalone` : Full text output
 * `./standalone 1` CSV output
 * `./standalone 2` produces results in the format `100% 4300mV`
 
 The other method, main.c, is a service which watches for accesses to files much like sysfs. These files are set up to be accessable by all users, so once the server process has started, no further root access is required. 
+To start the server, run :
+```
+make voltage_server
+sudo ./voltage_server &
+```
 
 The interface for this method is located in `/tmp`. To trigger an ADC read, write `1` to /tmp/battery_trigger
 
@@ -47,6 +52,7 @@ After some length of time (0.1 seconds is sufficient), the results are available
 
 The python script, report_voltages.py, gives an example of how to use this interface.
 
+Running `sudo make install` will install `voltage_server` as a service and start automatically when the edison starts. This is thoroughly untested.
 
 For OpenAPS users that want to log voltage to nightscout, I use the following two files:
 https://gist.github.com/cjo20/42ce5227cc1412513448da17f5f1ab84
