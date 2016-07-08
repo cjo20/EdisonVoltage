@@ -2,9 +2,9 @@ It is possible to read the Lipo battery voltage on an Intel Edison without using
 
 There is a system device, bcove_adc, that is connected to various voltage and temperature input lines. These can be read using `/sys/devices/platform/bcove_adc/basincove_gpadc`. 
 
-`/sys/devices/platform/bcove_adc/basincove_gpadc/channel` reads a bitmask of channels to report. Channel 0 is the battery voltage.
-`/sys/devices/platform/bcove_adc/basincove_gpadc/sample` triggers an ADC conversion to take place.
-`/sys/devices/platform/bcove_adc/basincove_gpadc/result` contains the result of the ADC conversion. It is an integer between 0 and 1023. A result of 1023 is roughly equivalent to 4.5v.
+* `/sys/devices/platform/bcove_adc/basincove_gpadc/channel` reads a bitmask of channels to report. Channel 0 is the battery voltage.
+* `/sys/devices/platform/bcove_adc/basincove_gpadc/sample` triggers an ADC conversion to take place.
+* `/sys/devices/platform/bcove_adc/basincove_gpadc/result` contains the result of the ADC conversion. It is an integer between 0 and 1023. A result of 1023 is roughly equivalent to 4.5v.
 
 ```
 $ echo 0x1 | sudo tee /sys/devices/platform/bcove_adc/basincove_gpadc/channel
@@ -27,9 +27,9 @@ In this case, the result is 980. 980 is about 96% of 1023, so the voltage is abo
 
 
 There are two different methods of reading voltage provided. One, standalone.c, requires root access (must be run with `sudo`). standalone.c takes 1 argument when run, a number. The number dictates the output format.
-`./standalone 0` or `./standalone` : Full text output
-`./standalone 1` CSV output
-`./standalone 2` produces results in the format `100% 4300mV`
+* `./standalone 0` or `./standalone` : Full text output
+* `./standalone 1` CSV output
+* `./standalone 2` produces results in the format `100% 4300mV`
 
 The other method, main.c, is a service which watches for accesses to files much like sysfs. These files are set up to be accessable by all users, so once the server process has started, no further root access is required. 
 
