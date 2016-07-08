@@ -40,6 +40,7 @@ $ echo 1 > /tmp/battery_trigger
 ```
 
 After some length of time (0.1 seconds is sufficient), the results are available in 3 files:
+
 1. `/tmp/battery_voltage` contains the voltage in mV
 2. `/tmp/battery_percentage` contains the battery percentage.
 3. `/tmp/battery_raw` contains the average of 5 ADC readings.
