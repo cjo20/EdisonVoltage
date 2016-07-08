@@ -26,10 +26,10 @@ sample_result[8] = 0
 In this case, the result is 980. 980 is about 96% of 1023, so the voltage is about 96% of 4.5v. This is 4.3v. In this case, the battery is connected to the charger, so this value is to be expected.
 
 
-There are two different methods of reading voltage provided. One, standalone.c, requires root access (must be run with `sudo`). Build it with `make standalone`. standalone.c takes 1 argument when run, a number. The number dictates the output format.
-* `./standalone 0` or `./standalone` : Full text output
-* `./standalone 1` CSV output
-* `./standalone 2` produces results in the format `100% 4300mV`
+There are two different methods of reading voltage provided. One, voltage.c, requires root access (must be run with `sudo`). Build it with `make voltage`. voltage.c takes 1 argument when run, a number. The number dictates the output format.
+* `./voltage 0` or `./voltage` : Full text output
+* `./voltage 1` CSV output
+* `./voltage 2` produces results in the format `100% 4300mV`
 
 The other method, main.c, is a service which watches for accesses to files much like sysfs. These files are set up to be accessable by all users, so once the server process has started, no further root access is required. 
 To start the server, run :
