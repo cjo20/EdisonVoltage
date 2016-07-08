@@ -11,7 +11,7 @@
 #define BAT_NORMAL      3680
 #define BAT_LOW         3400
 #define BAT_CRIT        3250
-#define BAT_DEAD        3200
+#define BAT_DEAD        2950
 
 #define BAT_FULL_PERCENT        100
 #define BAT_NORMAL_PERCENT      50
