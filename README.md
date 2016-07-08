@@ -31,7 +31,7 @@ There are two different methods of reading voltage provided. One, voltage.c, req
 * `./voltage 1` CSV output
 * `./voltage 2` produces results in the format `100% 4300mV`
 
-The other method, main.c, is a service which watches for accesses to files much like sysfs. These files are set up to be accessable by all users, so once the server process has started, no further root access is required. 
+The other method, voltage_server.c, is a service which watches for accesses to files much like sysfs. These files are set up to be accessable by all users, so once the server process has started, no further root access is required. 
 To start the server, run :
 ```
 make voltage_server
