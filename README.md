@@ -1,3 +1,8 @@
+###Disclaimer
+This code is a proof-of-concept, very little effort has been put in to ensuring it is bug free.
+
+# Reading VBAT on the Edison
+
 It is possible to read the Lipo battery voltage on an Intel Edison without using the Yocto battery_voltage. This method of reading battery voltage works on devices running Ubilinux.
 
 There is a system device, bcove_adc, that is connected to various voltage and temperature input lines. These can be read using `/sys/devices/platform/bcove_adc/basincove_gpadc`. 
