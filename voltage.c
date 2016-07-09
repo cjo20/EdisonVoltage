@@ -5,7 +5,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
-
+#include <stdlib.h>
 
 #define BAT_FULL        4180
 #define BAT_NORMAL      3680
@@ -107,8 +107,36 @@ int main(int argc, char * argv[])
 	int mode = 0;
 	if (argc > 1)
 	{
-		mode = atoi(argv[1]);
-
+		if (strcmp(argv[1], "text") == 0)
+		{
+			mode = 0;
+		}
+		else if (strcmp(argv[1], "csv") == 0)
+		{
+			mode = 1;
+		}
+		else if (strcmp(argv[1], "short") == 0)
+		{
+			mode = 2;
+		}
+		else if (strcmp(argv[1], "percentage") == 0)
+		{
+			mode = 3;
+		}
+		else if (strcmp(argv[1], "json") == 0)
+		{
+			mode = 4;
+		}
+		else
+		{
+			printf("Unknown output type: %s. Valid options:\n", argv[1]);
+			printf("text: Verbose output\n");
+			printf("csv: CSV values, raw reading, voltage and percentage\n");
+			printf("short: Just voltage and percentage values. E.g. \"100%% 4180mV\"\n");
+			printf("percentage: Single integer percentage value\n");
+			printf("json: JSON output. E.g. {\"voltage\":4180, \"percentage\":100}\n");
+			exit(1);
+		}
 	}
 
 	raw = read_raw();
@@ -121,7 +149,7 @@ int main(int argc, char * argv[])
 			break;
 
 		case 1:
-			printf("%.0f,%.0f,,%.0f%%\n", raw, voltage, CalculatePercentage(voltage));
+			printf("%.0f,%.0f,%.0f%%\n", raw, voltage, CalculatePercentage(voltage));
 			break;
 
 		case 2:
@@ -130,6 +158,10 @@ int main(int argc, char * argv[])
 
 		case 3:
 			printf("%.0f", CalculatePercentage(voltage));
+			break;
+
+		case 4:
+			printf("{\"voltage\":%.0f, \"percentage\":%.0f}", voltage, CalculatePercentage(voltage));
 			break;
 	}
 
