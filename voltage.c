@@ -104,6 +104,9 @@ int main(int argc, char * argv[])
 	float raw = 0.0f;
 	float voltage = 0.0f;
 	
+	char voltage_text[33] = "voltage";
+	char percentage_text[33] = "percentage";
+
 	int mode = 0;
 	if (argc > 1)
 	{
@@ -126,6 +129,12 @@ int main(int argc, char * argv[])
 		else if (strcmp(argv[1], "json") == 0)
 		{
 			mode = 4;
+
+			if (argc == 4)
+			{
+				strncpy(voltage_text, argv[2], 32);
+				strncpy(percentage_text, argv[3], 32);
+			}
 		}
 		else
 		{
@@ -161,7 +170,7 @@ int main(int argc, char * argv[])
 			break;
 
 		case 4:
-			printf("{\"voltage\":%.0f, \"percentage\":%.0f}", voltage, CalculatePercentage(voltage));
+			printf("{\"%s\":%.0f, \"%s\":%.0f}", voltage_text, voltage, percentage_text, CalculatePercentage(voltage));
 			break;
 	}
 

@@ -27,9 +27,12 @@ In this case, the result is 980. 980 is about 96% of 1023, so the voltage is abo
 
 
 There are two different methods of reading voltage provided. One, voltage.c, requires root access (must be run with `sudo`). Build it with `make voltage`. voltage.c takes 1 argument when run, a number. The number dictates the output format.
-* `./voltage 0` or `./voltage` : Full text output
-* `./voltage 1` CSV output
-* `./voltage 2` produces results in the format `100% 4300mV`
+* `./voltage text` or `./voltage` : Full text output
+* `./voltage csv` CSV output
+* `./voltage short` produces results in the format `100% 4300mV`
+* `./voltage percentage` reports only the battery percentage
+* `./voltage json` gives JSON output of the voltage and percentage.
+
 
 The other method, voltage_server.c, is a service which watches for accesses to files much like sysfs. These files are set up to be accessable by all users, so once the server process has started, no further root access is required. 
 To start the server, run :
