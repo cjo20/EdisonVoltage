@@ -7,7 +7,8 @@ This is incredibly hacky and requires fixing
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
-
+#include <unistd.h>
+#include <stdlib.h>
 
 #define BAT_FULL        4180
 #define BAT_NORMAL      3680

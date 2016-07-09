@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define BAT_FULL        4180
 #define BAT_NORMAL      3680
