@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# chkconfig: 35 90 12
+# description: Voltage server
+#
+
+
+### BEGIN INIT INFO
+# Provides:          voltage_server
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# X-Interactive:     false
+# Short-Description: Example init script
+# Description:       Start/stop an example script
+### END INIT INFO
+
+start() {
+	if [ -f /var/lock/voltage_server ]; then
+		echo -n "Already running."
+	else
+	        echo -n Starting Voltage server:
+	        /usr/local/bin/voltage_server &
+	        ### Create the lock file ###
+	        touch /var/lock/voltage_server
+	fi
+}
+# Restart the service Voltage
+stop() {
+        echo -n Stopping Voltage server:
+	echo 9 > /tmp/battery_trigger
+        ### Now, delete the lock file ###
+        rm -f /var/lock/voltage_server
+        echo
+}
+### main logic ###
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        ;;
+  restart|reload|condrestart)
+        stop
+        start
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+exit 0
